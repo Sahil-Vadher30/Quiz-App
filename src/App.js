@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import './App.css'
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import Settings from './pages/Settings/Settings'
+import Questions from './pages/Questions/Questions'
+import FinalScreen from './pages/FinalScreen/FinalScreen'
+// import { QuestionProvider } from "./useReducer/QuestionContext";
+
 
 function App() {
   return (
+    // <QuestionProvider>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <SelectForm/> */}
+      <h1>QuizMaster</h1>
+      <Router>
+
+            <Routes>
+                <Route 
+                  path="/" 
+                  element={<Settings/> } />
+                <Route 
+                  path="questions" 
+                  element={<Questions/> } />
+                <Route 
+                  path="score" 
+                  element={<FinalScreen/>} />
+            </Routes>
+
+        </Router>
     </div>
+    // </QuestionProvider>
   );
 }
 

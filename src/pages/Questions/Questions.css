@@ -1,0 +1,113 @@
+*{
+    box-sizing: border-box;
+}
+/* ---------------container------------------------- */
+.container{
+    max-width: 1080px;
+    margin: 10px auto;
+    padding: 20px 40px;
+    border: 2px solid #d4d4d5;
+    border-radius: 5px;
+}
+
+
+.questionHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.questionNo{
+    display: inline;
+    padding: 15px 11px;;
+    background-color: #f3f4f5;
+    border: 2px solid #d4d4d5;
+    border-radius: 5px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.timer{
+    display: inline;
+    padding: 18px 7px;
+    background-color: #f3f4f5;
+    border: 2px solid #d4d4d5;
+    border-radius: 5px;
+}
+
+.timer .hour, .minutes, .seconds{
+    display: inline;
+    width: 50px;
+    height: 50px;
+    /* border: 2px solid gray; */
+    font-size: 30px;
+    font-weight: 400;
+    padding: 9px;
+}
+
+.timer .minutes{
+    border: 2px solid #d4d4d5;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+/* -----------------question----------------------- */
+.question{
+    background-color: #f8f8f9;
+    border: 1px solid #d4d4d5;
+    border-radius: 5px;
+
+    margin: 32px 0;
+    padding: 15px 25px;
+
+    font-size: 25px;
+    font-weight: 450;
+
+    box-shadow: 0 0 0 1px rgba(34,36,38,.22) , 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15)
+}
+
+/* -----------------options----------------------- */
+.options{
+    background-color: #f8f8f9;
+    border: 1px solid #d4d4d5;
+    border-radius: 5px; 
+
+    font-size: 21px;
+}
+
+.option-1 ,.option-2 ,.option-3, .option-4, .option{
+    padding: 20px 20px;
+    border: 1px solid #d4d4d5;
+
+    font-weight: 400;
+}
+
+.options span{
+    font-weight: 600;
+}
+
+/* ------------loading animation------------------- */
+.loading{
+    width: 80px;
+    height: 80px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    border-width: 5px;
+    border-style: solid;
+    border-color: black black black white;
+    border-radius: 50%;
+
+    animation: load 1s linear  infinite;
+}
+
+@keyframes load {
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+/* ---------------------------------------- */
+
+/* ---------------------------------------- */
