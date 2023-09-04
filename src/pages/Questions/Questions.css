@@ -81,7 +81,7 @@
     font-weight: 400;
 }
 
-.options span{
+.options span:first-child{
     font-weight: 600;
 }
 
