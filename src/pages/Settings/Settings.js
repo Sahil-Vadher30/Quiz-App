@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Settings.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SelectField from '../../components/SelectField'
 import Axios from '../../Axios/Axios';
 import TextField from '../../components/TextField';
+import useQuestion from '../../useReducer/QuestionContext';
 
 export default function Settings() {
     const {response, error, loading} = Axios({url:"/api_category.php"});
     // console.log(response)
+    const navigate = useNavigate();
 
     const difficultyOptions = [
         {id:'easy', name:'Easy'},
@@ -19,6 +21,21 @@ export default function Settings() {
         {id:"multiple", name:"Multiple Choice"},
         {id:"boolean", name:"True/False"},
     ];
+
+    const {state} = useQuestion()
+    const [alert, setAlert] = useState(false);
+    const alertfunc = () =>{
+        if(state.amount_of_question < 5){
+            console.log('if =',state.amount_of_question)
+            setAlert(true);
+            return true;
+        }
+        else{
+              console.log('else =',state.amount_of_question)
+            setAlert(false);
+            return false;
+        }
+    }
 
     if(loading){
         return(
@@ -38,6 +55,15 @@ export default function Settings() {
     
     function handleSubmit(e){
         e.preventDefault();
+        console.log('submit')
+        if(alertfunc()){
+            console.log('alert')
+            return;
+        }
+        else{
+            console.log('navigate')
+            navigate('/questions')
+        }
     }
 
   return (
@@ -48,13 +74,13 @@ export default function Settings() {
             <SelectField options={typeOptions} label="Type" />
 
             <TextField/>
-      
+            <label htmlFor="alert" className={`alertNoOfQuestion ${alert? 'visible' : 'hidden'}`}> No. of questions can not be less than 5 </label>
 
-        <Link to="/questions">
+        {/* <Link to="/questions"> */}
             <button type='submit'>
                 Play Now
             </button>
-        </Link>
+        {/* </Link> */}
       </div>
     </form>
   )

@@ -32,7 +32,7 @@ function Form(props) {
         <label>{label}</label>
           
         <select value={value}  onChange={handleChange}>
-          <option selected hidden>Select {label}</option>
+          <option selected hidden>Any {label}</option>
           {
             options.map(({ id, name }) => (
               <option value={id} key={id}>

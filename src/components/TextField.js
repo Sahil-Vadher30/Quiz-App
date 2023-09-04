@@ -3,7 +3,7 @@ import './TextField'
 import useQuestion from '../useReducer/QuestionContext'
 
 export default function TextField() {
-      const { handleAmountChange } = useQuestion();
+      const {state, handleAmountChange } = useQuestion();
     
     const handleChange = (e) =>{
         handleAmountChange(e.target.value);
@@ -12,7 +12,7 @@ export default function TextField() {
   return (
     <div>
         <label>No. of Questions</label>
-        <input type="number" onChange={handleChange}  />
+        <input type="number" onChange={handleChange}  value={state.amount_of_question}/>
     </div>
   )
 }

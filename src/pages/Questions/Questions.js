@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Questions.css'
 import Axios from '../../Axios/Axios';
 import useQuestion from '../../useReducer/QuestionContext';
