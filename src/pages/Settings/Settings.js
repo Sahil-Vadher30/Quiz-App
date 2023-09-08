@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './Settings.css'
+import './Responsive.css'
 import { Link, useNavigate } from 'react-router-dom';
 import SelectField from '../../components/SelectField'
 import Axios from '../../Axios/Axios';
@@ -26,12 +27,12 @@ export default function Settings() {
     const [alert, setAlert] = useState(false);
     const alertfunc = () =>{
         if(state.amount_of_question < 5){
-            console.log('if =',state.amount_of_question)
+            // console.log('if =',state.amount_of_question)
             setAlert(true);
             return true;
         }
         else{
-              console.log('else =',state.amount_of_question)
+            //   console.log('else =',state.amount_of_question)
             setAlert(false);
             return false;
         }
@@ -55,13 +56,12 @@ export default function Settings() {
     
     function handleSubmit(e){
         e.preventDefault();
-        console.log('submit')
+        // console.log('submit')
         if(alertfunc()){
             console.log('alert')
             return;
         }
         else{
-            console.log('navigate')
             navigate('/questions')
         }
     }

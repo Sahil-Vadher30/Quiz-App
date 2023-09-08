@@ -5,6 +5,7 @@ import useQuestion from '../../useReducer/QuestionContext';
 import { decode } from 'html-entities';
 import { useNavigate } from 'react-router-dom';
 
+var questionsAnswers;
 
 const getRandomInt = (max) => {
   return Math.floor(Math.random() * Math.floor(max));
@@ -57,28 +58,39 @@ export default function Questions() {
     }, [response, questionIndex]);
     
 
-    // to check answer is checked or not
-    var [checked, setChecked] = useState(false); 
-    // console.log('checked = ',checked)
-    const CheckAnswer = () =>{
-      setChecked(true);
-    }
+    const [userSlectedAns, setUserSlectedAns] = useState(null);
+    const [selectedQuestioniD, setSelectedQuesionID] = useState(null);
+    const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
 
-    const handleClickAnswer = (data,id) =>{
+
+    const handleNextQuestion = () =>{
       const question = response.results[questionIndex];
-      // console.log('my answer =',data);
+      let point = 0;
+
       // console.log('correct answrer = ',question.correct_answer)
-      if(data === question.correct_answer){
-        console.log('True')
+      if(userSlectedAns === question.correct_answer){
+        // console.log('True')
+        point = 1;
         handleScoreChange( state.score+1 );
       }
 
-
+      const qna = questionsAndAnswers;
+      qna.push({
+        question: decode(question.question),
+        user_answer: userSlectedAns,
+        correct_answer: decode(question.correct_answer),
+        point
+      });
+      
       if(questionIndex+1 < response.results.length){
-        setQuestionIndex(questionIndex+1)
+        setUserSlectedAns(null);
+        setSelectedQuesionID(null);
+        setQuestionsAndAnswers(qna);
+        setQuestionIndex(questionIndex+1);
       }
       else{
-        navigate('/score')
+        questionsAnswers = questionsAndAnswers;
+        navigate('/score');
       }
     }
 
@@ -110,26 +122,11 @@ export default function Questions() {
           { decode(response.results[questionIndex].question) }
         </div>
 
-        {/* <div className="options">
-          <div className="option">
-            <span>A. </span>Option-1
-          </div>
-          <div className="option">
-            <span>B. </span>Option-1
-          </div>
-          <div className="option">
-            <span>C. </span>Option-1
-          </div>
-          <div className="option">
-            <span>D. </span>Option-1
-          </div>
-        </div> */}
-
         <div className="options">
           {
             options.map((data, id)=>{
               return (
-                <div className="option" onClick={()=>{handleClickAnswer(data,id)}} value={data}>
+                <div className="option" onClick={()=>{setUserSlectedAns(data); setSelectedQuesionID(id)}} value={data} style={ selectedQuestioniD==id ? {backgroundColor:"#d7d7d7"} : null}>
                     
                   <span>
                     { id==0 ? 'A.': null }
@@ -144,10 +141,17 @@ export default function Questions() {
           }
         </div>
 
-        <h3>Score: {state.score} / {response.results.length}</h3>
-
-        {/* <button >Next</button> */}
+        {/* <h3>Score: {state.score} / {response.results.length}</h3> */}
+        
+        <div className='btn-container'>
+          <button className='btn' onClick={handleNextQuestion} disabled={userSlectedAns==null? true : false}  style={userSlectedAns==null? {backgroundColor:'#8bb2cf',cursor:'not-allowed'} : null} title='Please select one option to move in next question' >
+            {questionIndex == response.results.length? 'Submit' : 'Next'}
+          </button>
+        </div>
 
     </div>
   )
 }
+
+
+export {questionsAnswers}
