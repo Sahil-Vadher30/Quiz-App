@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       {/* <SelectForm/> */}
       <h1>QuizMaster</h1>
-      <Router>
+      <Router basename="Quiz-App">
 
             <Routes>
                 <Route 

@@ -145,7 +145,7 @@ export default function Questions() {
         
         <div className='btn-container'>
           <button className='btn' onClick={handleNextQuestion} disabled={userSlectedAns==null? true : false}  style={userSlectedAns==null? {backgroundColor:'#8bb2cf',cursor:'not-allowed'} : null} title='Please select one option to move in next question' >
-            {questionIndex == response.results.length? 'Submit' : 'Next'}
+            {questionIndex+1 == response.results.length? 'Submit' : 'Next'}
           </button>
         </div>
 
