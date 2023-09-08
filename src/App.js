@@ -20,10 +20,10 @@ function App() {
                   path="/" 
                   element={<Settings/> } />
                 <Route 
-                  path="questions" 
+                  path="/questions" 
                   element={<Questions/> } />
                 <Route 
-                  path="score" 
+                  path="/score" 
                   element={<FinalScreen/>} />
             </Routes>
 
