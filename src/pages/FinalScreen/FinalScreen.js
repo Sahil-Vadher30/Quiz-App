@@ -32,28 +32,30 @@ export default function FinalScreen() {
         Score : {state.score}/{state.amount_of_question}
       </h2>
 
-      <table className='qnaTable' rules='all'>
-          <thead style={{backgroundColor:'rgb(241 240 240)'}}>
-            <th>No.</th>
-            <th>Questions</th>
-            <th>Your Answers</th>
-            <th>Correct Answers</th>
-            <th>Points</th>
-          </thead>
-        {
-          qnas.map((qna,id)=>{
-            return (
-              <tr align='center'>
-                <td>{id + 1}</td>
-                <td>{qna. question}</td>
-                <td>{qna. user_answer}</td>
-                <td>{qna. correct_answer}</td>
-                <td>{qna. point}</td>
-              </tr>
-            )
-          })
-        }
-      </table>
+      <div className='scroll'>
+        <table className='qnaTable' rules='all'>
+            <thead style={{backgroundColor:'rgb(241 240 240)'}}>
+              <th>No.</th>
+              <th>Questions</th>
+              <th>Your Answers</th>
+              <th>Correct Answers</th>
+              <th>Points</th>
+            </thead>
+          {
+            qnas.map((qna,id)=>{
+              return (
+                <tr align='center'>
+                  <td>{id + 1}</td>
+                  <td>{qna. question}</td>
+                  <td>{qna. user_answer}</td>
+                  <td>{qna. correct_answer}</td>
+                  <td>{qna. point}</td>
+                </tr>
+              )
+            })
+          }
+        </table>
+      </div>
 
         <div className="btns">
           <button className='playAgain' onClick={handlePlayAgain}>Play Again</button>
