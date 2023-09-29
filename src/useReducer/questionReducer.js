@@ -5,6 +5,9 @@ export const initialState = {
     question_type: "",
     amount_of_question: 10,
     score: 0,
+    hours:0,
+    minutes:0,
+    seconds:0,
   };
 
 const Reducer= (state, action)=> {
@@ -39,6 +42,24 @@ const Reducer= (state, action)=> {
           return {
             ...state,
             score: action.payload,
+          };
+        case "CHANGE_HOURS":
+          // console.log("CHANGE_SCORE", action.payload);
+          return {
+            ...state,
+            hours: action.payload,
+          };
+        case "CHANGE_MINUTES":
+          // console.log("CHANGE_SCORE", action.payload);
+          return {
+            ...state,
+            minutes: action.payload,
+          };
+        case "CHANGE_SECONDS":
+          // console.log("CHANGE_SCORE", action.payload);
+          return {
+            ...state,
+            seconds: action.payload,
           };
         default:
           return state;

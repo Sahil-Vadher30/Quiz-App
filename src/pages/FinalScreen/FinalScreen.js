@@ -5,7 +5,16 @@ import { useNavigate } from 'react-router';
 import { questionsAnswers } from '../Questions/Questions';
 
 export default function FinalScreen() {
-    const {state, handleCategoryChange, handleDifficultyChange, handleTypeChange, handleAmountChange, handleScoreChange} = useQuestion();
+    const {state, 
+          handleCategoryChange, 
+          handleDifficultyChange, 
+          handleTypeChange, 
+          handleAmountChange, 
+          handleScoreChange,
+          handleHoursChange,
+          handleMinutesChange,
+          handleSecondsChange,
+          } = useQuestion();
     const navigate = useNavigate();
     const qnas = questionsAnswers;
     // console.log('qnas =',qnas);
@@ -22,6 +31,9 @@ export default function FinalScreen() {
       handleTypeChange("");
       handleAmountChange(10);
       handleScoreChange(0);
+      handleHoursChange(0);
+      handleMinutesChange(0);
+      handleSecondsChange(0);
 
       navigate('/');
     }

@@ -24,7 +24,7 @@ export default function Settings() {
     ];
 
     const {state} = useQuestion()
-    const [alert, setAlert] = useState(false);
+    const [alertNoOfQuestion, setAlert] = useState(false);
     const alertfunc = () =>{
         if(state.amount_of_question < 5){
             // console.log('if =',state.amount_of_question)
@@ -62,7 +62,14 @@ export default function Settings() {
             return;
         }
         else{
-            navigate('/questions')
+            let totalSeconds = state.hours * 3600 + state.minutes * 60 + state.seconds;
+            // console.log('totalSeconds=',totalSeconds)
+            if(totalSeconds<=0){
+                alert('Please enter a valid duration.');
+            }
+            else{
+                navigate('/questions')
+            }
         }
     }
 
@@ -73,8 +80,14 @@ export default function Settings() {
             <SelectField options={difficultyOptions} label="Difficulty" />
             <SelectField options={typeOptions} label="Type" />
 
-            <TextField/>
-            <label htmlFor="alert" className={`alertNoOfQuestion ${alert? 'visible' : 'hidden'}`}> No. of questions can not be less than 5 </label>
+            <TextField label="No. of Questions" />
+            <label htmlFor="alert" className={`alertNoOfQuestion ${alertNoOfQuestion? 'visible' : 'hidden'}`}> No. of questions can not be less than 5 </label>
+
+            <div className="timeSelect">
+                <TextField label="Hours" />
+                <TextField label="Minutes" />
+                <TextField label="Seconds" />
+            </div>
 
         {/* <Link to="/questions"> */}
             <button type='submit'>

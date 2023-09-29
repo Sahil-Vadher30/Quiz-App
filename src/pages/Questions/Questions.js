@@ -4,6 +4,7 @@ import Axios from '../../Axios/Axios';
 import useQuestion from '../../useReducer/QuestionContext';
 import { decode } from 'html-entities';
 import { useNavigate } from 'react-router-dom';
+import Timer from '../../components/Timer';
 
 var questionsAnswers;
 
@@ -19,6 +20,9 @@ export default function Questions() {
     // console.log("question_difficulty =",state.question_difficulty)
     // console.log("amount_of_question =",state.amount_of_question)
     // console.log("score =",state.score)
+    // console.log("hours =",state.hours)
+    // console.log("minutes =",state.minutes)
+    // console.log("seconds =",state.seconds)
     const navigate = useNavigate()
 
 
@@ -87,6 +91,7 @@ export default function Questions() {
         setSelectedQuesionID(null);
         setQuestionsAndAnswers(qna);
         setQuestionIndex(questionIndex+1);
+        questionsAnswers = questionsAndAnswers;
       }
       else{
         questionsAnswers = questionsAndAnswers;
@@ -112,9 +117,7 @@ export default function Questions() {
             Question No.{questionIndex + 1} of {state.amount_of_question}
           </div>
           <div className="timer">
-            <div className="hour">HH</div>
-            <div className="minutes">MM</div>
-            <div className="seconds">SS</div>
+            <Timer/>
           </div>
         </div>
 

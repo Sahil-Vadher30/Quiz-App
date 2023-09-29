@@ -43,9 +43,28 @@ export const QuestionProvider = ({ children }) =>{
       })
     };
 
+    const handleHoursChange = (payload) => {
+      dispatch({
+        type: "CHANGE_HOURS",
+        payload,
+      })
+    };
+    const handleMinutesChange = (payload) => {
+      dispatch({
+        type: "CHANGE_MINUTES",
+        payload,
+      })
+    };
+    const handleSecondsChange = (payload) => {
+      dispatch({
+        type: "CHANGE_SECONDS",
+        payload,
+      })
+    };
+
     // console.log('state =',state)
 
-    const value = { state , handleCategoryChange, handleDifficultyChange, handleTypeChange, handleAmountChange, handleScoreChange}
+    const value = { state , handleCategoryChange, handleDifficultyChange, handleTypeChange, handleAmountChange, handleScoreChange, handleHoursChange, handleMinutesChange, handleSecondsChange}
     
   return <questionContext.Provider value={value}>{ children }</questionContext.Provider>
 }
